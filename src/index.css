@@ -30,3 +30,8 @@ h2 {
   margin: 0px !important;
   margin-top:16px !important;
 }
+.bContainer{
+  /*background: #f8b195;*/
+  background: rgba(53, 92, 125, .92);
+  text-align: center;
+}
