@@ -2,7 +2,9 @@ import React from 'react';;
 import Dropzone from 'react-dropzone';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-
+var fs = require('fs');
+var gm = require('gm');
+var imageMagick = gm.subClass({ imageMagick: true });
 const theme = createMuiTheme({
   overrides: {
     MuiButton: {
@@ -34,21 +36,34 @@ export default class App extends React.Component {
       <section>
         <div className="container">
           <Dropzone
+          
             className="dropzone"
-            accept="application/pdf"
-            onDrop={(accepted, rejected) => { this.setState({ accepted, rejected }); }}
+            accept="image/jpeg"
+            onDrop={
+            (accepted, rejected) => { this.setState({ accepted, rejected }); 
+              gm('/home/x2/image/img.jpg')
+                .stream('png', function (err, stdout, stderr) {
+                var writeStream = fs.createWriteStream('/home/x2/image/img.png');
+                stdout.pipe(writeStream);
+                if (err) {
+                  console.log('well shit')
+                }
+              });
+            }}
           >
            <div className="item">Drop PDF's</div> 
           </Dropzone>
         </div>
         <div className="bContainer">
+          {/* Custom Button Theme */}
          <MuiThemeProvider theme={theme}>
-      <Button>{'Convert'}</Button>
-    </MuiThemeProvider>
+            <Button>{'Convert'}</Button>
+         </MuiThemeProvider>
         </div>
         <aside className="mBelow">
           <h2>Accepted</h2>
           <ul>
+            {/* Grabs Accepted Files Name and Size and displays it */}
             {
               this.state.accepted.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
             }
