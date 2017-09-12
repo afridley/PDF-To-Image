@@ -22,14 +22,39 @@ const theme = createMuiTheme({
     },
   },
 });
+
+
 export default class App extends React.Component {
     constructor() {
     super()
     this.state = {
-      accepted: [],
-      rejected: []
+      acceptedFiles: [],
+      rejectedFiles: []
     }
   }
+
+onDrop(acceptedFiles, rejectedFiles) {
+  acceptedFiles.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+          const fileAsBinaryString = reader.result;
+          // do whatever you want with the file content
+          gm(file.path)
+    .stream('png', function (err, stdout, stderr) {
+    var writeStream = fs.createWriteStream(file.path + ".png");
+    stdout.pipe(writeStream);
+    if (err) {
+      console.log('well shit')
+    }
+    console.log(file.path);
+  });
+      };
+      reader.onabort = () => console.log('file reading was aborted');
+      reader.onerror = () => console.log('file reading has failed');
+
+      reader.readAsBinaryString(file);
+  });
+}
 
   render() {
     return (
@@ -38,18 +63,22 @@ export default class App extends React.Component {
           <Dropzone
           
             className="dropzone"
-            accept="image/jpeg"
-            onDrop={
-            (accepted, rejected) => { this.setState({ accepted, rejected }); 
-              gm('/home/x2/image/img.jpg')
-                .stream('png', function (err, stdout, stderr) {
-                var writeStream = fs.createWriteStream('/home/x2/image/img.png');
-                stdout.pipe(writeStream);
-                if (err) {
-                  console.log('well shit')
-                }
-              });
-            }}
+            accept="application/pdf"
+            onDrop={this.onDrop.bind(this)}            
+            // onDrop={
+            // (accepted, rejected) => { this.setState({ accepted, rejected }); 
+            //   gm('/home/x2/image/img.jpg')
+            //     .stream('png', function (err, stdout, stderr) {
+            //     var writeStream = fs.createWriteStream('/home/x2/image/img.png');
+            //     stdout.pipe(writeStream);
+            //     if (err) {
+            //       console.log('well shit')
+            //     }
+            //   });
+            // }}
+
+            // figure out where the ondrop method needs to go
+
           >
            <div className="item">Drop PDF's</div> 
           </Dropzone>
@@ -65,13 +94,13 @@ export default class App extends React.Component {
           <ul>
             {/* Grabs Accepted Files Name and Size and displays it */}
             {
-              this.state.accepted.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+              // this.state.acceptedFiles.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
             }
           </ul>
           <h2>Rejected</h2>
           <ul>
             {
-              this.state.rejected.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+              // this.state.rejectedFiles.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
             }
           </ul>
         </aside>
