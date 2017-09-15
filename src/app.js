@@ -1,7 +1,12 @@
-import React from 'react';;
+import React from 'react';
 import Dropzone from 'react-dropzone';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+import{
+  close,
+  minimize
+} from '../src/utils/functions';
+
 var fs = require('fs');
 var gm = require('gm');
 var imageMagick = gm.subClass({ imageMagick: true });
@@ -11,13 +16,14 @@ const theme = createMuiTheme({
       // Name of the styleSheet
       root: {
         // Name of the rule
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-        borderRadius: 3,
+        background: 'linear-gradient(45deg, rgba(3, 72, 105, .4) 30%, rgba(33, 72, 105, .4) 90%)',
+//        background: 'rgba(33, 72, 105, 1)',   
+        borderRadius: 2,
         border: 0,
-        color: 'white',
-        height: 48,
+        color: 'rgba(255,255,255,.5)',
+        height: 20,
         padding: '0 30px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .30)',
+        margin: '1em',
       },
     },
   },
@@ -59,51 +65,23 @@ onDrop(acceptedFiles, rejectedFiles) {
   render() {
     return (
       <section>
-        <div className="container">
-          <Dropzone
-          
+        <div className="title-bar">
+        <button className="close title-button" onClick={() => close()}></button>
+        <button className="minimize title-button" onClick={() => minimize()}></button>
+        </div>
+          <Dropzone          
             className="dropzone"
             accept="application/pdf"
             onDrop={this.onDrop.bind(this)}            
-            // onDrop={
-            // (accepted, rejected) => { this.setState({ accepted, rejected }); 
-            //   gm('/home/x2/image/img.jpg')
-            //     .stream('png', function (err, stdout, stderr) {
-            //     var writeStream = fs.createWriteStream('/home/x2/image/img.png');
-            //     stdout.pipe(writeStream);
-            //     if (err) {
-            //       console.log('well shit')
-            //     }
-            //   });
-            // }}
-
-            // figure out where the ondrop method needs to go
-
           >
            <div className="item">Drop PDF's</div> 
           </Dropzone>
-        </div>
         <div className="bContainer">
           {/* Custom Button Theme */}
          <MuiThemeProvider theme={theme}>
-            <Button>{'Convert'}</Button>
+            <Button>{'Tutorial'}</Button>
          </MuiThemeProvider>
         </div>
-        <aside className="mBelow">
-          <h2>Accepted</h2>
-          <ul>
-            {/* Grabs Accepted Files Name and Size and displays it */}
-            {
-              // this.state.acceptedFiles.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-            }
-          </ul>
-          <h2>Rejected</h2>
-          <ul>
-            {
-              // this.state.rejectedFiles.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-            }
-          </ul>
-        </aside>
       </section>
     );
   }
