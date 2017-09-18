@@ -68,5 +68,29 @@ h2 {
     background: rgba(53, 92, 125, .92);
     -webkit-app-region:drag;
 }
+.modal-text{
+  color:white;
+  code{
+      background:rgba(33, 72, 105, 1);
+      padding:2px;
+  }
+  line-height:1em;
+  margin:1em;  
+}
+
+::-webkit-scrollbar {     
+        width: .5em;
+}
+::-webkit-scrollbar-track{
+        background-color: rgba(0,0,0,0);
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.09);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,255,255,0.01); 
+}
+::webkit-scr
 
 // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
