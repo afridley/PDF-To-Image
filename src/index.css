@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s ease;
 }
 
 .item {
@@ -47,6 +48,8 @@ h2 {
 .bContainer {
   /*background: #f8b195;*/
   background: #355c7d;
+  z-index: 50;
+  position: relative;
 }
 
 .title-button {
@@ -71,6 +74,8 @@ h2 {
 .title-bar {
   background: rgba(53, 92, 125, 0.92);
   -webkit-app-region: drag;
+  position: relative;
+  z-index: 50;
 }
 
 .modal-text {
@@ -82,6 +87,22 @@ h2 {
 .modal-text code {
   background: #214869;
   padding: 2px;
+}
+
+.d-accept {
+  background: #B3DB68;
+}
+
+.d-accept > .item {
+  color: white;
+}
+
+.d-reject {
+  background: #DF8585;
+}
+
+.d-reject > .item {
+  color: white;
 }
 
 ::-webkit-scrollbar {

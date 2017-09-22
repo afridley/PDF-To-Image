@@ -61,12 +61,12 @@ onDrop(acceptedFiles, rejectedFiles) {
     if (err) {
       console.log('Error')
     }
-    console.log(file.path);
+    
   });
       };
       reader.onabort = () => console.log('file reading was aborted');
       reader.onerror = () => console.log('file reading has failed');
-
+      console.log(rejectedFiles);
       reader.readAsBinaryString(file);
   });
 }
@@ -81,7 +81,10 @@ onDrop(acceptedFiles, rejectedFiles) {
           <Dropzone          
             className="dropzone"
             accept="application/pdf"
-            onDrop={this.onDrop.bind(this)}            
+            onDrop={this.onDrop.bind(this)}
+            activeClassName="d-active"
+            acceptClassName="d-accept"
+            rejectClassName="d-reject"   
           >
            <div className="item">Drop PDF's 
            </div> 
