@@ -56,7 +56,7 @@ onDrop(acceptedFiles, rejectedFiles) {
           // do whatever you want with the file content
           gm(file.path)
     .stream('png', function (err, stdout, stderr) {
-    var writeStream = fs.createWriteStream(file.path + ".png");
+    var writeStream = fs.createWriteStream(file.path.slice(0, -4) + ".png");
     stdout.pipe(writeStream);
     if (err) {
       console.log('Error')
