@@ -11,7 +11,7 @@ export default class Modal extends React.Component {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         zIndex: '9999',
-        background: 'rgba(53, 92, 125, .92)',
+        background: 'rgba(53, 92, 125, 1)',
         borderRadius:3,
         boxShadow: '7px 7px 20px 0px rgba(0, 0, 0, .10)',
         width: 500,

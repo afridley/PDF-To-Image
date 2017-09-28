@@ -89,6 +89,10 @@ h2 {
   padding: 2px;
 }
 
+.modal-text a {
+  color: #f8b195;
+}
+
 .d-accept {
   background: #B3DB68;
 }

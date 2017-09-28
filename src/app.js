@@ -56,7 +56,7 @@ onDrop(acceptedFiles, rejectedFiles) {
           // do whatever you want with the file content
           gm(file.path)
     .stream('png', function (err, stdout, stderr) {
-    var writeStream = fs.createWriteStream(file.path.slice(0, -4) + ".png");
+    var writeStream = fs.createWriteStream(file.path.replace(/\.[^/.]+$/, "") + ".png");
     stdout.pipe(writeStream);
     if (err) {
       console.log('Error')
@@ -99,16 +99,16 @@ onDrop(acceptedFiles, rejectedFiles) {
           <Modal isOpen = {this.state.modalActive} onClose = {() => this.closeModal()}> 
             <div className="modal-text">  
             <h1>Tutorial</h1>
-            <p>This program requires Graphics Magick</p>
+            <p>This program requires Graphics Magick to be installed. Please see below for instructions</p>
 
           <h3>Linux</h3>
-          <p>Graphics Magick may already be installed
-            <p>Open terminal</p>
+          <p>Graphics Magick may already be installed.
+            <p>Open terminal.</p>
             <p><code>sudo apt-get install graphicsmagick</code></p>
           </p>
 
           <h3>Windows</h3>
-          <p>Download the latest version from</p>
+          <p>Download the latest version from.</p>
           <p><a href="ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/windows/">ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/windows/</a></p>
 
           <h3>Mac</h3>
