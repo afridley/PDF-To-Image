@@ -22,3 +22,5 @@ deploy:                     # Configuration for releases
   draft: true               # Don't publish this to the public, make it a draft
   on:                       # Tell it when to deploy/release
     tags: true              # We only create a release on tags
+  api_key:                  # Github personal access token encrypted with travis encrypt command
+    secure: "HeFWzYmW7hza6dt/pPe/qEIC01KjMd3Y0xMB7iMHizlgHTFND77r7HHU8KkEGD+EBtAktF5icbPcba9xAYYS9L8ROBSY9MrojquEPfBSv9CZwPVTN1cxl3PPmRe2hWIOIbJwGJG9YLL3Q3BAQD2yz66IqTbb2dFhD9bi4JHaVJX4tsSZclTCinUYQtVrmjwYgfNxd1v7PrJ1eMbsLfB4VYHgqhirPq7A+eY1iRpBcZ/nYbvPVgYo66tQ8ML/AbySCWX6/uZJpk4D3kPyaZl2ce2SFX0d5oM9ieHC4dXx7w7J1rSm3bQgLacc/YL2vA9A5W4O52fDd9wakrPkJPw1IGO+Q205uMOsUrmcy4j1XZsHKehpXnDfB0rjL8/cMMTjhocnC40Lpz7k3R6Tm1lsRfp/mTvX9d+T+Ko3Ev9VyQ0Bm3InMyuuRKARy/z5x7DcqOe8EHab6x1WCzhrsM8mWOvX8PRX69wBwv1RqFiF4r4ScPFa/jW8FmWcXV2opx3bFQ/7/tU8x8P/GdDEKUcsi0izwhsecmpVfDhIJt2xwP1TTDeWQDd+Iq0PQtjkMfjWy+/yayfp1UV2Ih3ENuMT+phgMdI2l4MOT9ef/ZMdyhxWKrA1Kh+O6Rg8fdHKbIbpXpUTTego/tS5+23gPajL+44ZTGoi98ZIKgbhooiMXks="

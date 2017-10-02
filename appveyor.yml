@@ -1,28 +1,35 @@
-version: 0.1.{build}
-
-platform:
-  - x64
-
+version: "{build}"                  # Version used in Appveyor to know this is a unique run, branch/build are only two vars
+build: off                          # Disables typical windows building for Visual Studio
+platform:                           # Platforms to test/build on
+#  - x86                             # Build for 32bit
+  - x64                             # Also build and test 64bit
+environment:
+  nodejs_version: "8"               # Test against the latest version of this Node.js version
+install:                            # Install scripts. (runs after repo cloning)
+  - ps: Install-Product node $env:nodejs_version # Get the latest stable version of Node.js or io.js
+  - npm install                     # install modules
+  - npm install -g electron-forge@4.0.1 # install electron-forge cli
 cache:
-  - node_modules
-  - app\node_modules
-  - '%APPDATA%\npm-cache'
-  - '%USERPROFILE%\.electron'
-
-init:
-  - git config --global core.autocrlf input
-
-install:
-  - ps: Install-Product node 6 x64
-  - git reset --hard HEAD
-  - npm install npm -g
-  - npm install electron-builder@next # force install next version to test electron-builder
-  - npm install
-  - npm prune
-
-build_script:
-  - node --version
+  - node_modules                    # Cache npm install to save a minute on builds
+skip_non_tags: true                 # Only build tags (we use travis-ci for tests)
+test_script:
+  - node --version                  # Helpful debugging info
   - npm --version
-  - npm run release
-
-test: off
+  - npm test                        # run tests
+after_test:                         # run build after tests
+  - npm run make                    # Script to package/compile
+artifacts:                          # Add artifacts to upload
+  - path: 'out\make\**\*.exe'       # upload all exe files in ./out/make
+    name: exe                       # name to be used in deploy
+deploy:                             # Deploy settings
+  release: $(appveyor_repo_tag_name)  # Use the tag name
+  description: 'Release description'  # Placeholder for prepopulating release description
+  provider: GitHub                  # Release to Github
+  artifacts: exe                    # Release the exe from named artifacts
+  draft: true                       # Draft release so it's not public
+  prerelease: true                  # Prerelease so it's not latest
+  auth_token:                       # provide the github personal access token in appveyor settings and view the export yml
+    secure: pL9CcH4JqFmyMIhKzD3TiWax5QRvjumoCyqtG0gOxI8QU8b3/tYkNyIvYkDhJnTE
+  on:                               # Requirements for when deploy is triggered
+    branch: master                  # release from master branch only
+    appveyor_repo_tag: true         # deploy on tag push only
