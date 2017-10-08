@@ -10,7 +10,7 @@ before_install:
   - npm i -g npm@5.2.0      # Specify version of npm
   - npm --version           # See what the running version of npm is
 before_deploy:              # Run these before attempting to deploy
-  - npm install -g electron-forge@4.0.1 # Install electron-forge, may move to dev-dependencies in package.json
+  - npm install -g electron-forge # Install electron-forge, may move to dev-dependencies in package.json
   - electron-forge make     # Command that builds the app for the architecture
 deploy:                     # Configuration for releases
   provider: releases
