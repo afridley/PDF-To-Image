@@ -1,7 +1,7 @@
 version: "{build}"                  # Version used in Appveyor to know this is a unique run, branch/build are only two vars
 build: off                          # Disables typical windows building for Visual Studio
 platform:                           # Platforms to test/build on
-#  - x86                             # Build for 32bit
+  - x86                             # Build for 32bit
   - x64                             # Also build and test 64bit
 environment:
   nodejs_version: "8"               # Test against the latest version of this Node.js version
