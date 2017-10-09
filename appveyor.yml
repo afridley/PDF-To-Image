@@ -12,6 +12,7 @@ cache:
 
 install:                            # Install scripts. (runs after repo cloning)
   - ps: Install-Product node $env:nodejs_version # Get the latest stable version of Node.js or io.js
+  - npm install -g npm@5.2.0
   - set PATH=%APPDATA%\npm;%PATH%
   - npm install                     # install modules
   - npm install -g electron-forge@4.1.2 # install electron-forge cli
@@ -21,7 +22,7 @@ test_script:
   - npm --version
   - npm test                        # run tests
 after_test:                         # run build after tests
-  - npm run make                    # Script to package/compile
+  - npm run make --force                    # Script to package/compile
 artifacts:                          # Add artifacts to upload
   - path: 'out\make\**\*.exe'       # upload all exe files in ./out/make
     name: exe                       # name to be used in deploy
