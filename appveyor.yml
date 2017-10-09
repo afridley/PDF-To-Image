@@ -16,6 +16,7 @@ install:                            # Install scripts. (runs after repo cloning)
   - set PATH=%APPDATA%\npm;%PATH%
   - npm install                     # install modules
   - npm install -g flatten-packages
+  - flatten-packages
   - npm install -g electron-forge@4.1.2 # install electron-forge cli
 skip_non_tags: true                 # Only build tags (we use travis-ci for tests)
 test_script:
@@ -23,7 +24,6 @@ test_script:
   - npm --version
   - npm test                        # run tests
 after_test:                         # run build after tests
-  - npm flatten-packages
   - npm run make                   # Script to package/compile
 artifacts:                          # Add artifacts to upload
   - path: 'out\make\**\*.exe'       # upload all exe files in ./out/make
