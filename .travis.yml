@@ -9,6 +9,7 @@ cache:                      # Speed up builds by caching things
 before_install:
   - npm i -g npm@5.2.0      # Specify version of npm
   - npm --version           # See what the running version of npm is
+  - sudo apt-get install dpkg-dev fakeroot lintian           
 before_deploy:              # Run these before attempting to deploy
   - npm install -g electron-forge@4.1.2 # Install electron-forge, may move to dev-dependencies in package.json
   - electron-forge make     # Command that builds the app for the architecture
