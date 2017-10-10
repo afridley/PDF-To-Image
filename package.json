@@ -29,7 +29,8 @@
                 ]
             },
             "electronPackagerConfig": {
-                "packageManager": "npm"
+                "packageManager": "npm",
+                "asar": true
             },
             "electronWinstallerConfig": {
                 "name": "Pdf-To-Image"
