@@ -13,8 +13,9 @@ init:
 install:
   - ps: Install-Product node 8 x64
   - yarn
-  - yarn add -g npm@5.4.2
-  - yarn add electron-forge
+  - yarn install
+  #- yarn add -g npm@5.4.2
+  - yarn add electron-forge -g
 
 build_script:
   - yarn make
