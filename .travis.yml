@@ -1,7 +1,7 @@
 language: node_js           # Set language for the environment
 node_js: node               # Use latest version of node.js
 os:                         # Simultaneous environments                  
-  - linux                   # Linux - for testing and future builds
+  #- linux                   # Linux - for testing and future builds
   - osx                     # Mac - for testing and builds
 cache:                      # Speed up builds by caching things
   directories:              # Add directories relative to root
