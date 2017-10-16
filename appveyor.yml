@@ -21,3 +21,18 @@ build_script:
   - yarn make
 
 test: off
+artifacts:                          # Add artifacts to upload
+  - path: 'out\make\**\*.exe'       # upload all exe files in ./out/make
+    name: exe                       # name to be used in deploy
+deploy:                             # Deploy settings
+  release: $(appveyor_repo_tag_name)  # Use the tag name
+  description: 'Release description'  # Placeholder for prepopulating release description
+  provider: GitHub                  # Release to Github
+  artifacts: exe                    # Release the exe from named artifacts
+  draft: true                       # Draft release so it's not public
+  prerelease: true                  # Prerelease so it's not latest
+  auth_token:                       # provide the github personal access token in appveyor settings and view the export yml
+    secure: pL9CcH4JqFmyMIhKzD3TiWax5QRvjumoCyqtG0gOxI8QU8b3/tYkNyIvYkDhJnTE
+  on:                               # Requirements for when deploy is triggered
+    branch: master                  # release from master branch only
+    appveyor_repo_tag: true 
