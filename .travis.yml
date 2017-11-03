@@ -1,5 +1,6 @@
 language: node_js           # Set language for the environment
-node_js: node@8.4.0               # Use latest version of node.js
+node_js:                    # Use latest version of node.js
+  - "8"
 os:                         # Simultaneous environments                  
   #- linux                   # Linux - for testing and future builds
   - osx                     # Mac - for testing and builds
