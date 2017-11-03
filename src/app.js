@@ -53,7 +53,7 @@ onDrop(acceptedFiles, rejectedFiles) {
       const reader = new FileReader();
       reader.onload = () => {
           const fileAsBinaryString = reader.result;
-          // do whatever you want with the file content
+          // Apply to file
           gm(file.path)
     .stream('png', function (err, stdout, stderr) {
     var writeStream = fs.createWriteStream(file.path.replace(/\.[^/.]+$/, "") + ".png");
@@ -108,8 +108,7 @@ onDrop(acceptedFiles, rejectedFiles) {
           </p>
 
           <h3>Windows</h3>
-          <p>Download the latest version from.</p>
-          <p><a href="ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/windows/">ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/windows/</a></p>
+          <p>Currently GraphicsMagick for Node is not working on Windows</p> 
 
           <h3>Mac</h3>
           <p>Open terminal (cmd + space) </p>
