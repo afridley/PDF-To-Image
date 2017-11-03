@@ -1,7 +1,7 @@
 {
-    "name": "Pdf-To-Image-test",
-    "productName": "Pdf-To-Image-test",
-    "version": "1.0.1",
+    "name": "Pdf-To-Image-v4",
+    "productName": "Pdf-To-Image-v4",
+    "version": "1.0.4",
     "description": "An image converter that converts pdf files to .png files",
     "main": "src/index.js",
     "scripts": {
